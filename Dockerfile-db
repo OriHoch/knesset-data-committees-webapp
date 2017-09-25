@@ -1,0 +1,7 @@
+FROM postgres:9.6.3-alpine
+
+COPY committees_db_dump_2017-09-25.sql /db_dump.sql
+
+RUN bash -c "docker-entrypoint.sh postgres & sleep 5 && cat /db_dump.sql | su-exec postgres psql"
+
+ENV POSTGRES_PASSWORD 123456

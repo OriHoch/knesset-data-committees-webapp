@@ -6,4 +6,14 @@ services:
     image: orihoch/knesset-data-committees-webapp
     build: .
     ports:
-      - "15050:5050"
+    - "15050:5050"
+    environment:
+    - "DPP_DB_ENGINE=postgresql://postgres:123456@db:5432/postgres"
+    depends_on:
+    - db
+
+  db:
+    image: orihoch/knesset-data-committees-webapp-db
+    build:
+      context: .
+      dockerfile: Dockerfile-db
