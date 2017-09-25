@@ -17,3 +17,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-db
+    volumes:
+    - "db:/var/lib/postgresql/data"
+
+volumes:
+  db:
